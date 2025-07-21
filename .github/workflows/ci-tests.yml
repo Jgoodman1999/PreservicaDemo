@@ -52,7 +52,7 @@ jobs:
         uses: dorny/test-reporter@v1
         if: always()
         with:
-          name: .NET Test Results
+          name: ".NET Test Results #${{ github.run_number }}"
           path: '**/test-results.trx'
           reporter: dotnet-trx
           fail-on-error: false
