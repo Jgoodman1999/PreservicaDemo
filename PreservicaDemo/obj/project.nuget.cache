@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "6Fbl6dUvwUw=",
+  "dgSpecHash": "U8bdiaJOm7U=",
   "success": true,
   "projectFilePath": "C:\\Users\\JoshGoodman\\source\\repos\\PreservicaDemo\\PreservicaDemo\\PreservicaDemo.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\JoshGoodman\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
+    "C:\\Users\\JoshGoodman\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
     "C:\\Users\\JoshGoodman\\.nuget\\packages\\cucumber.cucumberexpressions\\17.1.0\\cucumber.cucumberexpressions.17.1.0.nupkg.sha512",
     "C:\\Users\\JoshGoodman\\.nuget\\packages\\gherkin\\30.0.0\\gherkin.30.0.0.nupkg.sha512",
     "C:\\Users\\JoshGoodman\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
