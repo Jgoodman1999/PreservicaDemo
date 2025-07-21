@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PreservicaDemo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9883c8e34acf4c05aee7679312e73b7ede5a0b70")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be495282b1dc1f89cdca7d7c7c7cb0b77d2b03b4")]
 [assembly: System.Reflection.AssemblyProductAttribute("PreservicaDemo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PreservicaDemo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
