@@ -29,5 +29,18 @@ jobs:
           dotnet tool restore
           dotnet playwright install --with-deps
 
-      - name: Run tests (headless)
-        run: dotnet test --configuration Release --no-build --logger "console;verbosity=detailed"
+      - name: Run tests and output NUnit XML
+        run: dotnet test --configuration Release --no-build --logger "nunit;LogFilePath=TestResults/TestResult.xml"
+
+      - name: Install ReportGenerator
+        run: dotnet tool install --global dotnet-reportgenerator-globaltool
+
+      - name: Generate HTML Report
+        run: |
+          reportgenerator -reports:TestResults/TestResult.xml -targetdir:TestResults/HtmlReport -reporttypes:Html
+
+      - name: Upload HTML Test Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-test-report
+          path: TestResults/HtmlReport/index.html
