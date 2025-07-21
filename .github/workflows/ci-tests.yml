@@ -40,20 +40,22 @@ jobs:
           dotnet test PreservicaDemo/PreservicaDemo.csproj \
             --configuration Release \
             --no-build \
-            --logger "trx;LogFileName=TestResults/test-results-${{ github.run_id }}.trx"
+            --logger "trx;LogFileName=TestResults/test-results.trx"
+          echo "Test results path:"
+          ls -la TestResults
         continue-on-error: true
 
       - name: Upload test results artifact
         uses: actions/upload-artifact@v4
         with:
           name: test-results
-          path: TestResults/
+          path: TestResults/test-results.trx
 
       - name: Publish test results to GitHub
         uses: dorny/test-reporter@v1
         if: always()
         with:
           name: ".NET Test Results #${{ github.run_number }}"
-          path: TestResults/test-results-${{ github.run_id }}.trx
+          path: TestResults/*.trx
           reporter: dotnet-trx
           fail-on-error: false
