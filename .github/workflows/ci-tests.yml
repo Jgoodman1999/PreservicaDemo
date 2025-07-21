@@ -18,16 +18,16 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Restore dependencies
+      - name: Restore NuGet packages
         run: dotnet restore
 
-      - name: Build solution
+      - name: Build the solution
         run: dotnet build --configuration Release --no-restore
 
-      - name: Install Playwright CLI and Browsers
+      - name: Restore tools and install Playwright
         run: |
-          dotnet tool install --global Microsoft.Playwright.CLI
+          dotnet tool restore
           dotnet playwright install --with-deps
 
-      - name: Run Tests (Headless)
+      - name: Run tests (headless)
         run: dotnet test --configuration Release --no-build --logger "console;verbosity=detailed"
