@@ -30,7 +30,7 @@ jobs:
           dotnet playwright install --with-deps
 
       - name: Run tests and output TRX
-        run: dotnet test --configuration Release --no-build --logger "trx;LogFileName=TestResults/TestResult.trx"
+        run: dotnet test --configuration Release --no-build --logger "trx;LogFileName=TestResult.trx"
         continue-on-error: true
 
       - name: Install ReportGenerator
@@ -38,7 +38,7 @@ jobs:
 
       - name: Generate HTML Report
         run: |
-          reportgenerator -reports:TestResults/TestResult.trx -targetdir:TestResults/HtmlReport -reporttypes:Html
+          reportgenerator -reports:**/TestResult.trx -targetdir:TestResults/HtmlReport -reporttypes:Html
 
       - name: Upload HTML Test Report
         uses: actions/upload-artifact@v4
