@@ -29,19 +29,6 @@ jobs:
           dotnet tool restore
           dotnet playwright install --with-deps
 
-      - name: Run tests and collect coverage
-        run: dotnet test PreservicaDemo/PreservicaDemo.csproj --configuration Release --no-build --collect:"XPlat Code Coverage" --logger "trx;LogFileName=TestResult.trx"
+      - name: Run tests
+        run: dotnet test PreservicaDemo/PreservicaDemo.csproj --configuration Release --no-build
         continue-on-error: true
-
-      - name: Install ReportGenerator
-        run: dotnet tool install --global dotnet-reportgenerator-globaltool
-
-      - name: Generate HTML Coverage Report
-        run: |
-          reportgenerator -reports:**/coverage.cobertura.xml -targetdir:TestResults/HtmlReport -reporttypes:Html
-
-      - name: Upload HTML Test Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: html-test-report
-          path: TestResults/HtmlReport/index.html
