@@ -36,26 +36,25 @@ jobs:
 
       - name: Run tests and collect results
         run: |
-          mkdir -p TestResults
+          mkdir -p PreservicaDemo/PreservicaDemo/TestResults
           dotnet test PreservicaDemo/PreservicaDemo.csproj \
             --configuration Release \
             --no-build \
-            --logger "trx;LogFileName=TestResults/test-results.trx"
-          echo "Test results path:"
-          ls -la TestResults
+            --logger "trx;LogFileName=PreservicaDemo/PreservicaDemo/TestResults/test-results.trx"
+          ls -la PreservicaDemo/PreservicaDemo/TestResults
         continue-on-error: true
 
       - name: Upload test results artifact
         uses: actions/upload-artifact@v4
         with:
           name: test-results
-          path: TestResults/test-results.trx
+          path: PreservicaDemo/PreservicaDemo/TestResults/test-results.trx
 
       - name: Publish test results to GitHub
         uses: dorny/test-reporter@v1
         if: always()
         with:
           name: ".NET Test Results #${{ github.run_number }}"
-          path: TestResults/*.trx
+          path: PreservicaDemo/PreservicaDemo/TestResults/test-results.trx
           reporter: dotnet-trx
           fail-on-error: false
