@@ -29,15 +29,15 @@ jobs:
           dotnet tool restore
           dotnet playwright install --with-deps
 
-      - name: Run tests and output NUnit XML
-        run: dotnet test --configuration Release --no-build --logger "nunit;LogFilePath=TestResults/TestResult.xml"
+      - name: Run tests and output TRX
+        run: dotnet test --configuration Release --no-build --logger "trx;LogFileName=TestResults/TestResult.trx"
 
       - name: Install ReportGenerator
         run: dotnet tool install --global dotnet-reportgenerator-globaltool
 
       - name: Generate HTML Report
         run: |
-          reportgenerator -reports:TestResults/TestResult.xml -targetdir:TestResults/HtmlReport -reporttypes:Html
+          reportgenerator -reports:TestResults/TestResult.trx -targetdir:TestResults/HtmlReport -reporttypes:Html
 
       - name: Upload HTML Test Report
         uses: actions/upload-artifact@v4
