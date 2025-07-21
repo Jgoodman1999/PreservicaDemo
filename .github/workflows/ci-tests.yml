@@ -18,7 +18,6 @@ jobs:
     steps:
       - name: Show run info
         run: echo "Manual run triggered - ID: ${{ github.event.inputs.run_id || 'auto' }}"
-      
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Setup .NET SDK
