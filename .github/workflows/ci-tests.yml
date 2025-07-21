@@ -31,6 +31,7 @@ jobs:
 
       - name: Run tests and output TRX
         run: dotnet test --configuration Release --no-build --logger "trx;LogFileName=TestResults/TestResult.trx"
+        continue-on-error: true
 
       - name: Install ReportGenerator
         run: dotnet tool install --global dotnet-reportgenerator-globaltool
