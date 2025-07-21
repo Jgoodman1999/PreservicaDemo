@@ -1,55 +1,46 @@
 name: Run API and UI Tests
-
 on:
   push:
     branches:
       - '**'
   workflow_dispatch:
-
 permissions:
   checks: write
   contents: read
-
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
-
       - name: Restore NuGet packages
         run: dotnet restore
-
       - name: Build the solution
         run: dotnet build --configuration Release --no-restore
-
       - name: Restore tools and install Playwright
         run: |
           dotnet tool restore
           dotnet playwright install --with-deps
-
       - name: Run tests and collect results
         run: |
           mkdir -p TestResults
           dotnet test PreservicaDemo/PreservicaDemo.csproj \
             --configuration Release \
             --no-build \
-            --logger "trx;LogFileName=TestResults/test-results.trx"
+            --logger "trx;LogFileName=test-results.trx" \
+            --results-directory TestResults
           ls -la TestResults
         continue-on-error: true
-
       - name: Upload test results artifact
         uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: TestResults/test-results.trx
-
+        if: always()
       - name: Publish test results to GitHub
         uses: dorny/test-reporter@v1
         if: always()
